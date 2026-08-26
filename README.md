@@ -17,5 +17,7 @@ The app uses hash routes, so its current page remains available after a refresh:
 - `#/` — Overview
 - `#/people` — People
 - `#/people/<employee-id>` — An employee's 1:1 history
+- `#/people/<employee-id>/1-on-1` — Start a 1:1 workspace
+- `#/people/<employee-id>/1-on-1/<session-id>` — Edit a saved 1:1
 - `#/agenda` — Team agenda
 - `#/actions` — Action items
