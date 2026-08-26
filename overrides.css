@@ -34,7 +34,22 @@
 .team-agenda-row--complete .action-copy small { color: #5b8177; }
 .agenda-tag--complete { color: #397264; background: #d9eee6; }
 
-.session-modal { width: min(760px, calc(100vw - 30px)); }
+.session-workspace { max-width: 1180px; margin: 0 auto; }
+.session-workspace-header { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: end; gap: 28px; margin: -18px -24px 28px; padding: 24px; background: color-mix(in srgb, var(--canvas) 94%, transparent); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); }
+.session-workspace-header .back-button { display: block; margin-bottom: 16px; }
+.session-workspace-header .eyebrow { margin-bottom: 7px; }
+.session-workspace-header h1 { margin: 0; font-size: 29px; letter-spacing: -1px; }
+.session-header-meta { display: grid; justify-items: end; gap: 7px; }
+.session-header-meta label, .session-composer > label { display: grid; gap: 7px; font-size: 12px; font-weight: 700; }
+.session-header-meta input { width: 164px; border: 1px solid #dce2e0; border-radius: 7px; padding: 9px 10px; background: #fff; color: var(--ink); font: 13px Manrope, sans-serif; }
+.session-header-meta .draft-status { margin: 0; text-align: right; }
+.session-workspace-grid { display: grid; grid-template-columns: minmax(245px, .44fr) minmax(0, 1fr); align-items: start; gap: 28px; }
+.session-context { position: sticky; top: 136px; display: grid; gap: 14px; }
+.session-composer { display: grid; gap: 11px; }
+.session-composer .rich-editor { min-height: min(52vh, 560px); }
+.session-composer .new-action { margin-top: 9px; }
+.session-composer .new-action > label { display: block; font-size: 12px; font-weight: 700; }
+.session-composer .new-action input:not([type=checkbox]), .session-composer .new-action select { width: 100%; border: 1px solid #dce2e0; border-radius: 7px; padding: 10px; background: #fff; color: var(--ink); font: 13px Manrope, sans-serif; }
 .rich-text-shell { border: 1px solid #dce2e0; border-radius: 7px; overflow: hidden; }
 .rich-toolbar { display: flex; align-items: center; gap: 2px; padding: 6px; border-bottom: 1px solid #e7ebea; background: #f7f9f8; }
 .rich-toolbar button { border: 0; border-radius: 4px; min-width: 34px; height: 31px; background: transparent; color: #405053; cursor: pointer; font: 16px Manrope, sans-serif; }
@@ -50,6 +65,11 @@
 .session-agenda .eyebrow, .session-actions .eyebrow { margin-bottom: 8px; }
 .session-agenda-item { display: flex; gap: 9px; align-items: center; padding: 7px 0; font-size: 12px; font-weight: 600; }
 .session-agenda-item + .session-agenda-item { border-top: 1px solid var(--line); }
+.session-action-item { display: flex; gap: 9px; align-items: flex-start; padding: 9px 0; cursor: pointer; }
+.session-action-item + .session-action-item { border-top: 1px solid var(--line); }
+.session-action-copy { display: grid; gap: 3px; }
+.session-action-copy strong { font-size: 12px; font-weight: 700; }
+.session-action-copy small { color: var(--muted); font-size: 11px; font-weight: 500; }
 .session-agenda-empty { margin: 0; color: var(--muted); font-size: 12px; }
 .session-notes { font-size: 13px; line-height: 1.65; }
 .session-notes p { margin: 0 0 9px; }
@@ -141,6 +161,9 @@
 @media (max-width: 830px) {
   .employee-header { padding: 24px; }
   .employee-header .header-actions { display: grid; margin-left: auto; }
+  .session-workspace-header { margin: -8px 0 24px; padding: 18px 0; }
+  .session-workspace-grid { grid-template-columns: 1fr; }
+  .session-context { position: static; grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 600px) {
@@ -153,4 +176,10 @@
   .session-card { padding: 20px; }
   .session-meta { gap: 12px; }
   .session-meta time { font-size: 10px; }
+  .session-workspace-header { display: grid; align-items: start; gap: 16px; }
+  .session-header-meta { justify-items: start; }
+  .session-header-meta .draft-status { text-align: left; }
+  .session-context { grid-template-columns: 1fr; }
+  .session-workspace-header h1 { font-size: 25px; }
+  .session-composer .rich-editor { min-height: 42vh; }
 }
