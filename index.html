@@ -22,7 +22,7 @@
     </svg>
     <div class="app-shell">
       <aside class="sidebar">
-        <a class="brand" href="#"><span class="brand-mark"><svg><use href="#icon-trail-mark" /></svg></span><span>The Edwards Experience</span></a>
+        <a class="brand" href="#"><span class="brand-mark"><img class="brand-boot-image" src="assets/mountain-sunrise-mark.png" alt="" /></span><span>The Edwards Experience</span></a>
         <nav class="nav" aria-label="Primary navigation">
           <button class="nav-item active" data-view="overview"><span class="nav-icon"><svg><use href="#icon-trail-mark" /></svg></span>Trailhead</button>
           <button class="nav-item" data-view="employees"><span class="nav-icon"><svg><use href="#icon-ridge-run" /></svg></span>The Crew</button>
@@ -33,12 +33,12 @@
           <p>THE CREW</p>
           <div id="teamList" class="team-list"></div>
         </div>
-        <div class="sidebar-bottom"><span class="avatar avatar-you">ME</span><div><strong>Lead Guide</strong><small id="fileStatus">Choose a data file</small></div><button id="changeFileButton" title="Choose a different data file">⌁</button><button id="resetButton" title="Reset sample data">↻</button></div>
+        <div class="sidebar-bottom"><span class="avatar avatar-you">ME</span><div><button class="manager-name-button" id="managerSettingsButton" title="Set your name"><strong id="managerName">Lead Guide</strong></button><small id="fileStatus">Choose a data file</small></div><button id="changeFileButton" title="Choose a different data file">⌁</button><button id="resetButton" title="Reset sample data">↻</button></div>
       </aside>
 
       <main class="main-content">
         <section id="overviewView" class="view active">
-          <header class="page-header"><div><p class="eyebrow" id="todayLabel"></p><h1>Good afternoon, Lead Guide.</h1><p class="subhead">Keep the crew connected and moving down the trail.</p></div><div class="header-trail-cue" aria-hidden="true"><svg><use href="#icon-switchback" /></svg><span>ONE STEP AT A TIME</span></div><button class="primary-button" id="quickSessionButton">+ Log a 1:1</button></header>
+          <header class="page-header"><div><p class="eyebrow" id="todayLabel"></p><h1>Good afternoon, <span id="managerGreeting">Lead Guide</span>.</h1><p class="subhead">Keep the crew connected and moving down the trail.</p></div><button class="primary-button" id="quickSessionButton">+ Log a 1:1</button></header>
           <section class="dashboard-grid">
             <div class="section-heading upcoming-heading"><div><p class="eyebrow">UP NEXT</p><h2>Your upcoming conversations</h2></div><button class="text-button" data-view="employees">View everyone →</button></div>
             <div id="upcomingList" class="upcoming-list"></div>
@@ -59,7 +59,7 @@
         </section>
 
         <section id="agendaView" class="view">
-          <header class="page-header compact"><div><p class="eyebrow">SHARED CONVERSATIONS</p><h1>Waypoints</h1><p class="subhead">Shared waypoints to cover in every 1:1.</p></div><button class="primary-button" id="addTeamPointButton">+ Add waypoint</button></header>
+          <header class="page-header compact"><div><p class="eyebrow">SHARED CONVERSATIONS</p><h1>Waypoints</h1><p class="subhead">Shared waypoints to cover with the crew members you choose.</p></div><button class="primary-button" id="addTeamPointButton">+ Add waypoint</button></header>
           <div id="teamAgendaList" class="actions-list"></div>
         </section>
 
@@ -89,9 +89,10 @@
     </div>
 
     <dialog id="employeeDialog" class="modal"><form method="dialog" id="employeeForm"><div class="modal-title"><h2>Add employee</h2><button type="button" class="icon-button close-modal">×</button></div><label>Name<input required name="name" placeholder="e.g. Jordan Lee" /></label><label>Role or team <input name="role" placeholder="e.g. Product designer" /></label><label>Meeting cadence<select name="cadence"><option value="weekly">Weekly</option><option value="biweekly">Every other week</option></select></label><div class="modal-actions"><button type="button" class="secondary-button close-modal">Cancel</button><button class="primary-button" value="default">Add employee</button></div></form></dialog>
+    <dialog id="managerDialog" class="modal"><form id="managerForm"><div class="modal-title"><div><p class="eyebrow">YOUR PROFILE</p><h2>What should we call you?</h2></div><button type="button" class="icon-button close-modal">×</button></div><label>Your name<input required name="name" autocomplete="name" placeholder="e.g. Morgan Taylor" /></label><div class="modal-actions"><button type="button" class="secondary-button close-modal">Cancel</button><button class="primary-button">Save name</button></div></form></dialog>
     <dialog id="editEmployeeDialog" class="modal"><form method="dialog" id="editEmployeeForm"><div class="modal-title"><div><p class="eyebrow">EMPLOYEE DETAILS</p><h2>Edit employee</h2></div><button type="button" class="icon-button close-modal">×</button></div><label>Name<input required name="name" placeholder="e.g. Jordan Lee" /></label><label>Role or team<input name="role" placeholder="e.g. Product designer" /></label><label>Meeting cadence<select name="cadence"><option value="weekly">Weekly</option><option value="biweekly">Every other week</option></select></label><label>Next 1:1<input required type="date" name="next" /></label><div class="modal-actions"><button type="button" class="secondary-button close-modal">Cancel</button><button class="primary-button" value="default">Save changes</button></div></form></dialog>
     <dialog id="sessionPersonDialog" class="modal"><form id="sessionPersonForm"><div class="modal-title"><div><p class="eyebrow">NEW 1:1</p><h2>Who are you meeting with?</h2></div><button type="button" class="icon-button close-modal">×</button></div><label>Employee<select id="sessionEmployeePicker" required></select></label><div class="modal-actions"><button type="button" class="secondary-button close-modal">Cancel</button><button class="primary-button">Start 1:1</button></div></form></dialog>
-    <dialog id="discussionDialog" class="modal"><form id="discussionForm"><div class="modal-title"><div><p class="eyebrow" id="discussionScopeLabel">WAYPOINTS</p><h2>Add a waypoint</h2></div><button type="button" class="icon-button close-modal">×</button></div><label>What would you like to discuss?<textarea name="text" required placeholder="e.g. Check in on workload and priorities"></textarea></label><input type="hidden" name="employeeId" id="discussionEmployeeId" /><div class="modal-actions"><button type="button" class="secondary-button close-modal">Cancel</button><button class="primary-button">Add waypoint</button></div></form></dialog>
+    <dialog id="discussionDialog" class="modal"><form id="discussionForm"><div class="modal-title"><div><p class="eyebrow" id="discussionScopeLabel">WAYPOINTS</p><h2>Add a waypoint</h2></div><button type="button" class="icon-button close-modal">×</button></div><label>What would you like to discuss?<textarea name="text" required placeholder="e.g. Check in on workload and priorities"></textarea></label><input type="hidden" name="employeeId" id="discussionEmployeeId" /><fieldset class="waypoint-assignees" id="waypointAssignees"><legend>Assign to</legend><label class="waypoint-audience-option"><input type="radio" name="audience" value="all" checked /> All crew members</label><label class="waypoint-audience-option"><input type="radio" name="audience" value="selected" /> Select crew members</label><div class="waypoint-member-list hidden" id="waypointMemberList"></div></fieldset><div class="modal-actions"><button type="button" class="secondary-button close-modal">Cancel</button><button class="primary-button">Add waypoint</button></div></form></dialog>
     <dialog id="fileDialog" class="modal file-dialog"><div class="file-dialog-copy"><p class="eyebrow">LOCAL JSON STORAGE</p><h2 id="fileDialogTitle">Choose your workspace file</h2><p id="fileDialogMessage">Your notes stay in a JSON file you choose on this computer. Changes save directly to that file.</p><div class="modal-actions"><button class="secondary-button hidden" id="reconnectFileButton">Reconnect saved file</button><button class="secondary-button" id="openFileButton">Open existing file</button><button class="primary-button" id="createFileButton">Create new file</button></div></div></dialog>
     <script src="app.js"></script>
   </body>

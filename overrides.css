@@ -26,6 +26,9 @@
 .edit-employee:hover,
 .delete-employee:hover { text-decoration: underline; }
 
+.manager-name-button { display: block; margin: 0; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.manager-name-button:hover strong, .manager-name-button:focus-visible strong { color: var(--teal); text-decoration: underline; }
+
 .agenda-heading { margin: 22px 0 8px; color: #819093; font: 500 10px 'DM Mono', monospace; letter-spacing: .11em; }
 .add-agenda-button { margin-bottom: 4px; }
 .agenda-tag { color: var(--teal); background: #eaf6f4; border-radius: 5px; padding: 4px 6px; font: 500 10px 'DM Mono', monospace; }
@@ -33,6 +36,13 @@
 .team-agenda-row--complete .action-copy strong { color: #52736c; text-decoration: line-through; text-decoration-color: #9fbbb5; }
 .team-agenda-row--complete .action-copy small { color: #5b8177; }
 .agenda-tag--complete { color: #397264; background: #d9eee6; }
+
+.waypoint-assignees { display: grid; gap: 9px; margin: 0; padding: 0; border: 0; }
+.waypoint-assignees legend { padding: 0; font-size: 12px; font-weight: 700; }
+.waypoint-audience-option, .waypoint-member-list label { display: flex !important; align-items: center; gap: 8px; font-size: 13px !important; font-weight: 500 !important; }
+.waypoint-audience-option input, .waypoint-member-list input { accent-color: var(--teal); }
+.waypoint-member-list { display: grid; gap: 8px; max-height: 160px; overflow-y: auto; margin: 1px 0 0 24px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 7px; background: #f8fbfa; }
+.waypoint-members-empty { margin: 0; color: var(--muted); font-size: 12px; }
 
 .session-workspace { max-width: 1180px; margin: 0 auto; }
 .session-workspace-header { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: end; gap: 28px; margin: -18px -24px 28px; padding: 24px; background: color-mix(in srgb, var(--canvas) 94%, transparent); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); }
@@ -161,25 +171,19 @@
 /* Outdoor icon system: deliberately small, hand-drawn marks keep the theme present
    without competing with the conversation content. */
 .icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
-.brand-mark { background: #254b45; border-radius: 50%; }
-.brand-mark svg { width: 21px; height: 21px; stroke: #f7f2df; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-.brand-mark .icon-accent { stroke: #d38a42; }
+.app-shell { grid-template-columns: 255px 1fr; }
+.brand { font-size: 18px; white-space: normal; }
+.brand > span:last-child { max-width: 185px; line-height: 1.16; }
+.brand-mark { width: 64px; height: 64px; background: transparent; border-radius: 0; }
+.brand-boot-image { width: 64px; height: 64px; max-width: none; object-fit: contain; }
 .nav-icon { width: 26px; height: 20px; vertical-align: -5px; }
 .nav-icon svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .nav-icon .icon-accent { stroke: #c77935; }
 .nav-item { display: flex; align-items: center; gap: 7px; }
 .nav-item em { margin-left: auto; }
 .nav-item.active { background: #eef5f1; color: #285e55; }
-.header-trail-cue { display: grid; justify-items: center; gap: 5px; margin: 1px 6px 0 auto; color: #5f7b73; }
-.header-trail-cue svg { width: 42px; height: 42px; stroke: #4d7267; stroke-width: 1.35; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-.header-trail-cue .icon-accent { stroke: #c77935; }
-.header-trail-cue span { font: 500 8px 'DM Mono', monospace; letter-spacing: .12em; white-space: nowrap; }
-
 @media (max-width: 830px) {
-  .header-trail-cue { display: none; }
-}
-
-@media (max-width: 830px) {
+  .app-shell { grid-template-columns: 1fr; }
   .employee-header { padding: 24px; }
   .employee-header .header-actions { display: grid; margin-left: auto; }
   .session-workspace-header { margin: -8px 0 24px; padding: 18px 0; }
