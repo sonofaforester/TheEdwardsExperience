@@ -55,7 +55,7 @@
 .rich-toolbar button { border: 0; border-radius: 4px; min-width: 34px; height: 31px; background: transparent; color: #405053; cursor: pointer; font: 16px Manrope, sans-serif; }
 .rich-toolbar button:hover { background: #e4eeec; color: var(--teal); }
 .rich-toolbar span { width: 1px; height: 18px; background: #dce2e0; margin: 0 4px; }
-.rich-editor { min-height: 190px; padding: 11px; outline: 0; font: 15px/1.65 Manrope, sans-serif; }
+.rich-editor { min-height: 190px; padding: 11px; outline: 0; background: #fff; font: 15px/1.65 Manrope, sans-serif; }
 .rich-editor:empty::before { content: attr(data-placeholder); color: #94a0a2; pointer-events: none; }
 .rich-editor p { margin: 0 0 9px; }
 .rich-editor ul, .rich-editor ol { margin: 5px 0; padding-left: 25px; }
