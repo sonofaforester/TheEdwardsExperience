@@ -158,6 +158,27 @@
 .delete-session { color: #a34d43; font-size: 11px; }
 .delete-session:hover { color: #873a32; text-decoration: underline; }
 
+/* Outdoor icon system: deliberately small, hand-drawn marks keep the theme present
+   without competing with the conversation content. */
+.icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.brand-mark { background: #254b45; border-radius: 50%; }
+.brand-mark svg { width: 21px; height: 21px; stroke: #f7f2df; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.brand-mark .icon-accent { stroke: #d38a42; }
+.nav-icon { width: 26px; height: 20px; vertical-align: -5px; }
+.nav-icon svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.nav-icon .icon-accent { stroke: #c77935; }
+.nav-item { display: flex; align-items: center; gap: 7px; }
+.nav-item em { margin-left: auto; }
+.nav-item.active { background: #eef5f1; color: #285e55; }
+.header-trail-cue { display: grid; justify-items: center; gap: 5px; margin: 1px 6px 0 auto; color: #5f7b73; }
+.header-trail-cue svg { width: 42px; height: 42px; stroke: #4d7267; stroke-width: 1.35; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.header-trail-cue .icon-accent { stroke: #c77935; }
+.header-trail-cue span { font: 500 8px 'DM Mono', monospace; letter-spacing: .12em; white-space: nowrap; }
+
+@media (max-width: 830px) {
+  .header-trail-cue { display: none; }
+}
+
 @media (max-width: 830px) {
   .employee-header { padding: 24px; }
   .employee-header .header-actions { display: grid; margin-left: auto; }
