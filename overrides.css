@@ -37,13 +37,6 @@
 .team-agenda-row--complete .action-copy small { color: #5b8177; }
 .agenda-tag--complete { color: #397264; background: #d9eee6; }
 
-.waypoint-assignees { display: grid; gap: 9px; margin: 0; padding: 0; border: 0; }
-.waypoint-assignees legend { padding: 0; font-size: 12px; font-weight: 700; }
-.waypoint-audience-option, .waypoint-member-list label { display: flex !important; align-items: center; gap: 8px; font-size: 13px !important; font-weight: 500 !important; }
-.waypoint-audience-option input, .waypoint-member-list input { accent-color: var(--teal); }
-.waypoint-member-list { display: grid; gap: 8px; max-height: 160px; overflow-y: auto; margin: 1px 0 0 24px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 7px; background: #f8fbfa; }
-.waypoint-members-empty { margin: 0; color: var(--muted); font-size: 12px; }
-
 .session-workspace { max-width: 1180px; margin: 0 auto; }
 .session-workspace-header { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: end; gap: 28px; margin: -18px -24px 28px; padding: 24px; background: color-mix(in srgb, var(--canvas) 94%, transparent); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); }
 .session-workspace-header .back-button { display: block; margin-bottom: 16px; }
@@ -170,6 +163,35 @@
 
 /* Outdoor icon system: deliberately small, hand-drawn marks keep the theme present
    without competing with the conversation content. */
+:root {
+  --ink: #1d2a28;
+  --muted: #687570;
+  --line: #dde1d8;
+  --canvas: #f6f4ee;
+  --panel: #fffdf8;
+  --teal: #234e45;
+  --aqua: #e4eee4;
+  --sun: #d96d24;
+  --coral: #f1dfca;
+  --lav: #dce9ef;
+}
+body { background: var(--canvas); }
+.sidebar { background: #fffdf8; }
+.primary-button { background: var(--teal); box-shadow: 0 3px 8px rgba(35, 78, 69, .18); }
+.primary-button:hover { background: #1c4038; }
+.secondary-button, .new-action { background: #edf2ea; }
+.add-agenda-button { background: var(--teal); color: #fff; }
+.add-agenda-button:hover { background: #1c4038; }
+.employee-action-toolbar { max-width: 1020px; padding-top: 22px; }
+.nav-item.active { background: #e7efe8; color: var(--teal); }
+.nav-item em { background: #dceadf; color: var(--teal); }
+.status-tag, .cadence, .agenda-tag { background: #e7f0e8; color: var(--teal); }
+.due { background: #fbebd9; color: #9d4c19; }
+.filter.active { background: var(--teal); border-color: var(--teal); }
+.check:checked { background: var(--teal); border-color: var(--teal); }
+.text-button, .back-button, .employee-tab.active { color: var(--teal); }
+.header-trail-cue svg { stroke: #527568; }
+.header-trail-cue .icon-accent, .nav-icon .icon-accent { stroke: var(--sun); }
 .icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 .app-shell { grid-template-columns: 255px 1fr; }
 .brand { font-size: 18px; white-space: normal; }
