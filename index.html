@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Edwards Experience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="overrides.css" />
+    <link rel="stylesheet" href="file-storage.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#"><span class="brand-mark">EE</span><span>The Edwards Experience</span></a>
+        <nav class="nav" aria-label="Primary navigation">
+          <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span>Overview</button>
+          <button class="nav-item" data-view="employees"><span class="nav-icon">♙</span>People</button>
+          <button class="nav-item" data-view="agenda"><span class="nav-icon">☷</span>Team agenda <em id="agendaCount"></em></button>
+          <button class="nav-item" data-view="actions"><span class="nav-icon">✓</span>Action items <em id="actionCount"></em></button>
+        </nav>
+        <div class="sidebar-section">
+          <p>YOUR TEAM</p>
+          <div id="teamList" class="team-list"></div>
+        </div>
+        <div class="sidebar-bottom"><span class="avatar avatar-you">ME</span><div><strong>Manager</strong><small id="fileStatus">Choose a data file</small></div><button id="changeFileButton" title="Choose a different data file">⌁</button><button id="resetButton" title="Reset sample data">↻</button></div>
+      </aside>
+
+      <main class="main-content">
+        <section id="overviewView" class="view active">
+          <header class="page-header"><div><p class="eyebrow" id="todayLabel"></p><h1>Good afternoon, Manager.</h1><p class="subhead">A calm place to keep your conversations moving forward.</p></div><button class="primary-button" id="quickSessionButton">+ Log a 1:1</button></header>
+          <section class="dashboard-grid">
+            <div class="section-heading upcoming-heading"><div><p class="eyebrow">UP NEXT</p><h2>Your upcoming conversations</h2></div><button class="text-button" data-view="employees">View everyone →</button></div>
+            <div id="upcomingList" class="upcoming-list"></div>
+            <div class="section-heading actions-heading"><div><p class="eyebrow">OPEN LOOPS</p><h2>Action items to follow up on</h2></div><button class="text-button" data-view="actions">See all →</button></div>
+            <div id="overviewActions" class="overview-actions"></div>
+          </section>
+        </section>
+
+        <section id="employeesView" class="view">
+          <header class="page-header compact"><div><p class="eyebrow">YOUR TEAM</p><h1>People</h1><p class="subhead">Keep a continuous record of each working relationship.</p></div><button class="primary-button" id="peopleAddButton">+ Add employee</button></header>
+          <div id="peopleGrid" class="people-grid"></div>
+        </section>
+
+        <section id="actionsView" class="view">
+          <header class="page-header compact"><div><p class="eyebrow">OPEN LOOPS</p><h1>Action items</h1><p class="subhead">A single view of the commitments made in your 1:1s.</p></div></header>
+          <div class="filter-row"><button class="filter active" data-filter="open">Open</button><button class="filter" data-filter="all">All items</button><button class="filter" data-filter="done">Completed</button></div>
+          <div id="actionsList" class="actions-list"></div>
+        </section>
+
+        <section id="agendaView" class="view">
+          <header class="page-header compact"><div><p class="eyebrow">SHARED CONVERSATIONS</p><h1>Team agenda</h1><p class="subhead">Discussion points that belong in every 1:1.</p></div><button class="primary-button" id="addTeamPointButton">+ Add discussion point</button></header>
+          <div id="teamAgendaList" class="actions-list"></div>
+        </section>
+
+        <section id="employeeView" class="view">
+          <button class="back-button" id="backToPeople">← Back to people</button>
+          <header id="employeeHeader" class="employee-header"></header>
+          <div class="employee-tabs"><button class="employee-tab active" data-tab="notes">Conversation history</button><button class="employee-tab" data-tab="agenda">Agenda</button><button class="employee-tab" data-tab="employee-actions">Action items</button></div>
+          <div id="notesPanel" class="employee-panel"></div>
+          <div id="employeeAgendaPanel" class="employee-panel hidden"></div>
+          <div id="employeeActionsPanel" class="employee-panel hidden"></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="employeeDialog" class="modal"><form method="dialog" id="employeeForm"><div class="modal-title"><h2>Add employee</h2><button type="button" class="icon-button close-modal">×</button></div><label>Name<input required name="name" placeholder="e.g. Jordan Lee" /></label><label>Role or team <input name="role" placeholder="e.g. Product designer" /></label><label>Meeting cadence<select name="cadence"><option value="weekly">Weekly</option><option value="biweekly">Every other week</option></select></label><div class="modal-actions"><button type="button" class="secondary-button close-modal">Cancel</button><button class="primary-button" value="default">Add employee</button></div></form></dialog>
+    <dialog id="editEmployeeDialog" class="modal"><form method="dialog" id="editEmployeeForm"><div class="modal-title"><div><p class="eyebrow">EMPLOYEE DETAILS</p><h2>Edit employee</h2></div><button type="button" class="icon-button close-modal">×</button></div><label>Name<input required name="name" placeholder="e.g. Jordan Lee" /></label><label>Role or team<input name="role" placeholder="e.g. Product designer" /></label><label>Meeting cadence<select name="cadence"><option value="weekly">Weekly</option><option value="biweekly">Every other week</option></select></label><label>Next 1:1<input required type="date" name="next" /></label><div class="modal-actions"><button type="button" class="secondary-button close-modal">Cancel</button><button class="primary-button" value="default">Save changes</button></div></form></dialog>
+    <dialog id="sessionPersonDialog" class="modal"><form id="sessionPersonForm"><div class="modal-title"><div><p class="eyebrow">NEW 1:1</p><h2>Who are you meeting with?</h2></div><button type="button" class="icon-button close-modal">×</button></div><label>Employee<select id="sessionEmployeePicker" required></select></label><div class="modal-actions"><button type="button" class="secondary-button close-modal">Cancel</button><button class="primary-button">Start 1:1</button></div></form></dialog>
+    <dialog id="sessionDialog" class="modal session-modal"><form method="dialog" id="sessionForm"><input type="hidden" id="sessionEmployee" name="employeeId" /><div class="modal-title"><div><p class="eyebrow">NEW 1:1</p><h2>Capture the conversation</h2></div><button type="button" class="icon-button close-modal">×</button></div><div id="sessionPersonLabel" class="session-person"></div><section class="session-agenda" aria-labelledby="sessionAgendaTitle"><p class="eyebrow" id="sessionAgendaTitle">AGENDA</p><div id="sessionAgendaItems"></div></section><section class="session-actions" aria-labelledby="sessionActionsTitle"><p class="eyebrow" id="sessionActionsTitle">OPEN ACTION ITEMS</p><div id="sessionActionItems"></div></section><label>Meeting date<input type="date" name="date" required /></label><label>What did you talk about?</label><div class="rich-text-shell"><div class="rich-toolbar" role="toolbar" aria-label="Formatting"><button type="button" data-command="bold" title="Bold"><strong>B</strong></button><button type="button" data-command="italic" title="Italic"><em>I</em></button><span></span><button type="button" data-command="insertUnorderedList" title="Bulleted list">•≡</button><button type="button" data-command="insertOrderedList" title="Numbered list">1≡</button><button type="button" data-command="outdent" title="Outdent">←</button><button type="button" data-command="indent" title="Indent">→</button><span></span><button type="button" data-command="link" title="Add link">↗</button><button type="button" data-emoji="😊" title="Insert emoji">☺</button><button type="button" data-emoji="👍" title="Insert thumbs up">👍</button></div><div id="sessionNotes" class="rich-editor" contenteditable="true" role="textbox" aria-multiline="true" data-placeholder="Wins, challenges, feedback, decisions…"></div></div><p id="sessionDraftStatus" class="draft-status" aria-live="polite"></p><div class="new-action"><label><input type="checkbox" id="addActionToggle" /> Add an action item</label><div id="newActionFields" class="hidden"><input name="actionText" placeholder="What needs to happen?" /><select name="owner"><option value="employee">Employee owns this</option><option value="manager">I own this</option></select><input type="date" name="dueDate" /></div></div><div class="modal-actions"><button type="button" class="secondary-button close-modal">Close</button></div></form></dialog>
+    <dialog id="discussionDialog" class="modal"><form id="discussionForm"><div class="modal-title"><div><p class="eyebrow" id="discussionScopeLabel">AGENDA</p><h2>Add discussion point</h2></div><button type="button" class="icon-button close-modal">×</button></div><label>What would you like to discuss?<textarea name="text" required placeholder="e.g. Check in on workload and priorities"></textarea></label><input type="hidden" name="employeeId" id="discussionEmployeeId" /><div class="modal-actions"><button type="button" class="secondary-button close-modal">Cancel</button><button class="primary-button">Add to agenda</button></div></form></dialog>
+    <dialog id="fileDialog" class="modal file-dialog"><div class="file-dialog-copy"><p class="eyebrow">LOCAL JSON STORAGE</p><h2 id="fileDialogTitle">Choose your workspace file</h2><p id="fileDialogMessage">Your notes stay in a JSON file you choose on this computer. Changes save directly to that file.</p><div class="modal-actions"><button class="secondary-button hidden" id="reconnectFileButton">Reconnect saved file</button><button class="secondary-button" id="openFileButton">Open existing file</button><button class="primary-button" id="createFileButton">Create new file</button></div></div></dialog>
+    <script src="app.js"></script>
+  </body>
+</html>

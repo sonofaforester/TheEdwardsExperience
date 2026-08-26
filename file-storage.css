@@ -1,0 +1,5 @@
+.file-dialog-copy{padding:28px;display:grid;gap:14px}
+.file-dialog-copy h2{margin:0;font-size:21px}
+.file-dialog-copy p:not(.eyebrow){margin:0;color:var(--muted);line-height:1.6}
+.file-dialog-copy .modal-actions{margin-top:4px}
+@media(max-width:480px){.file-dialog-copy .modal-actions{flex-direction:column}.file-dialog-copy .modal-actions button{width:100%}}
