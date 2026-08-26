@@ -2,9 +2,27 @@
 .upcoming-list { grid-column: 1; grid-row: 2; }
 .actions-heading { grid-column: 2; grid-row: 1; }
 .overview-actions { grid-column: 2; grid-row: 2; }
+.trail-quote-card {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+  padding: 24px 26px;
+  border: 1px solid #cfded6;
+  border-radius: 14px;
+  background: linear-gradient(115deg, #e7f1ea, #fffdf8 64%);
+}
+.trail-quote-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.trail-quote-heading .eyebrow { margin-bottom: 6px; color: #52736c; }
+.trail-quote-heading h2 { margin: 0; font-size: 17px; letter-spacing: -.45px; }
+.trail-quote-next { width: 32px; height: 32px; border: 1px solid #c4d6cc; border-radius: 50%; background: #fffdf8; color: var(--teal); font: 700 17px Manrope, sans-serif; cursor: pointer; }
+.trail-quote-next:hover, .trail-quote-next:focus-visible { background: var(--teal); color: #fff; outline: none; }
+.trail-quote-text { max-width: 690px; margin: 18px 0 7px; color: #28433b; font: 600 19px/1.5 Manrope, sans-serif; letter-spacing: -.25px; }
+.trail-quote-author { margin: 0; color: #5d716b; font: 500 11px 'DM Mono', monospace; }
+.trail-quote-source { display: inline-block; margin-top: 17px; color: var(--teal); font: 700 11px Manrope, sans-serif; text-decoration: none; }
+.trail-quote-source:hover, .trail-quote-source:focus-visible { text-decoration: underline; }
 
 @media (max-width: 830px) {
-  .upcoming-heading, .upcoming-list, .actions-heading, .overview-actions { grid-column: 1; grid-row: auto; }
+  .upcoming-heading, .upcoming-list, .actions-heading, .overview-actions, .trail-quote-card { grid-column: 1; grid-row: auto; }
+  .trail-quote-card { margin-top: 2px; }
 }
 
 .employee-management { display: flex; justify-content: flex-end; gap: 14px; margin-top: 12px; }
