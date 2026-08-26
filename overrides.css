@@ -23,6 +23,7 @@
 @media (max-width: 830px) {
   .upcoming-heading, .upcoming-list, .actions-heading, .overview-actions, .trail-quote-card { grid-column: 1; grid-row: auto; }
   .trail-quote-card { margin-top: 2px; }
+  .signpost-members { grid-template-columns: 1fr; }
 }
 
 .employee-management { display: flex; justify-content: flex-end; gap: 14px; margin-top: 12px; }
@@ -48,12 +49,38 @@
 .manager-name-button:hover strong, .manager-name-button:focus-visible strong { color: var(--teal); text-decoration: underline; }
 
 .agenda-heading { margin: 22px 0 8px; color: #819093; font: 500 10px 'DM Mono', monospace; letter-spacing: .11em; }
+.signpost-section-heading:first-child { margin-top: 12px; }
 .add-agenda-button { margin-bottom: 4px; }
+.discussion-assignment { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: #f8fbf9; color: #405053; font-size: 12px; font-weight: 700; }
+.discussion-assignment > span { color: var(--muted); font: 500 10px 'DM Mono', monospace; letter-spacing: .08em; }
+.discussion-choice-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.discussion-choice { display: flex !important; width: 100%; align-items: center; gap: 8px; padding: 10px 11px; border: 1px solid #d5dfda; border-radius: 7px; background: #fff; color: #405053; cursor: pointer; font-weight: 700; }
+.modal .discussion-choice input[type="radio"] { width: auto; margin: 0; padding: 0; border: 0; accent-color: var(--teal); }
+.discussion-choice:has(input:checked) { border-color: var(--teal); background: #eaf4ef; color: var(--teal); }
+.discussion-assignees { display: grid; gap: 10px; padding: 11px 0 0; border-top: 1px solid var(--line); }
+.discussion-assignee-tools { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font: 500 10px 'DM Mono', monospace; letter-spacing: .06em; }
+.discussion-assignee-tools div { display: flex; gap: 5px; }
+.discussion-assignee-tools button { border: 0; background: none; padding: 0; color: var(--teal); font: 700 11px Manrope, sans-serif; cursor: pointer; }
+.discussion-assignee-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px 14px; }
+.discussion-assignee-list label { display: flex; align-items: center; gap: 8px; color: #405053; font-size: 12px; font-weight: 600; cursor: pointer; }
+.discussion-assignee-list input[type="checkbox"] { width: 17px; height: 17px; margin: 0; accent-color: var(--teal); flex: 0 0 auto; }
 .agenda-tag { color: var(--teal); background: #eaf6f4; border-radius: 5px; padding: 4px 6px; font: 500 10px 'DM Mono', monospace; }
 .team-agenda-row--complete { background: #f3f8f5; }
 .team-agenda-row--complete .action-copy strong { color: #52736c; text-decoration: line-through; text-decoration-color: #9fbbb5; }
 .team-agenda-row--complete .action-copy small { color: #5b8177; }
 .agenda-tag--complete { color: #397264; background: #d9eee6; }
+.team-agenda-details { border-bottom: 1px solid var(--line); }
+.team-agenda-details:last-child { border-bottom: 0; }
+.team-agenda-details summary { display: flex; align-items: center; gap: 12px; padding: 13px 0; cursor: pointer; list-style: none; }
+.team-agenda-details summary::-webkit-details-marker { display: none; }
+.team-agenda-details summary::before { content: '›'; color: var(--teal); font-size: 19px; line-height: 1; transition: transform .15s ease; }
+.team-agenda-details[open] summary::before { transform: rotate(90deg); }
+.team-agenda-details .action-copy { flex: 1; }
+.signpost-members { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px 18px; margin: 0 0 14px 30px; padding: 11px 0 0; border-top: 1px solid var(--line); list-style: none; }
+.signpost-member { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; align-items: center; gap: 8px; color: #405053; font-size: 12px; font-weight: 600; }
+.signpost-member .avatar { width: 24px; height: 24px; font-size: 8px; }
+.signpost-member small { color: #a37542; font: 500 9px 'DM Mono', monospace; }
+.signpost-member--done small { color: #397264; }
 
 .session-workspace { max-width: 1180px; margin: 0 auto; }
 .session-workspace-header { position: sticky; top: 0; z-index: 2; display: flex; justify-content: space-between; align-items: end; gap: 28px; margin: -18px -24px 28px; padding: 24px; background: color-mix(in srgb, var(--canvas) 94%, transparent); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); }
