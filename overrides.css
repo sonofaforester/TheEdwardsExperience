@@ -198,8 +198,8 @@ body { background: var(--canvas); }
 .brand > span:last-child { max-width: 185px; line-height: 1.16; }
 .brand-mark { width: 64px; height: 64px; background: transparent; border-radius: 0; }
 .brand-boot-image { width: 64px; height: 64px; max-width: none; object-fit: contain; }
-.nav-icon { width: 26px; height: 20px; vertical-align: -5px; }
-.nav-icon svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.nav-icon { width: 34px; height: 26px; vertical-align: -7px; }
+.nav-icon svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .nav-icon .icon-accent { stroke: #c77935; }
 .nav-item { display: flex; align-items: center; gap: 7px; }
 .nav-item em { margin-left: auto; }
