@@ -66,7 +66,7 @@
 .discussion-assignee-list input[type="checkbox"] { width: 17px; height: 17px; margin: 0; accent-color: var(--teal); flex: 0 0 auto; }
 .agenda-tag { color: var(--teal); background: #eaf6f4; border-radius: 5px; padding: 4px 6px; font: 500 10px 'DM Mono', monospace; }
 .team-agenda-row--complete { background: #f3f8f5; }
-.team-agenda-row--complete .action-copy strong { color: #52736c; text-decoration: line-through; text-decoration-color: #9fbbb5; }
+.team-agenda-row--complete .signpost-copy { color: #52736c; }
 .team-agenda-row--complete .action-copy small { color: #5b8177; }
 .agenda-tag--complete { color: #397264; background: #d9eee6; }
 .team-agenda-details { border-bottom: 1px solid var(--line); }
@@ -76,6 +76,14 @@
 .team-agenda-details summary::before { content: '›'; color: var(--teal); font-size: 19px; line-height: 1; transition: transform .15s ease; }
 .team-agenda-details[open] summary::before { transform: rotate(90deg); }
 .team-agenda-details .action-copy { flex: 1; }
+.team-agenda-details .action-copy, .signpost-row .action-copy { min-width: 0; }
+.signpost-edit-target { cursor: pointer; }
+.signpost-edit-target:hover .signpost-copy, .signpost-edit-target:hover .session-agenda-copy { color: var(--teal); }
+.signpost-edit-target:focus-visible { outline: 2px solid #8fbab1; outline-offset: 3px; border-radius: 5px; }
+.signpost-copy { color: var(--ink); font-size: 12px; font-weight: 600; line-height: 1.5; overflow-wrap: anywhere; }
+.signpost-copy p, .session-agenda-copy p { margin: 0 0 6px; }
+.signpost-copy p:last-child, .session-agenda-copy p:last-child { margin-bottom: 0; }
+.signpost-copy ul, .signpost-copy ol, .session-agenda-copy ul, .session-agenda-copy ol { margin: 4px 0; padding-left: 20px; }
 .signpost-members { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px 18px; margin: 0 0 14px 30px; padding: 11px 0 0; border-top: 1px solid var(--line); list-style: none; }
 .signpost-member { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; align-items: center; gap: 8px; color: #405053; font-size: 12px; font-weight: 600; }
 .signpost-member .avatar { width: 24px; height: 24px; font-size: 8px; }
@@ -92,12 +100,10 @@
 .session-header-meta input { width: 164px; border: 1px solid #dce2e0; border-radius: 7px; padding: 9px 10px; background: #fff; color: var(--ink); font: 13px Manrope, sans-serif; }
 .session-header-meta .draft-status { margin: 0; text-align: right; }
 .session-workspace-grid { display: grid; grid-template-columns: minmax(245px, .44fr) minmax(0, 1fr); align-items: start; gap: 28px; }
+.session-workspace-grid > *, .session-context, .session-composer { min-width: 0; }
 .session-context { position: sticky; top: 136px; display: grid; gap: 14px; }
 .session-composer { display: grid; gap: 11px; }
 .session-composer .rich-editor { min-height: min(52vh, 560px); }
-.session-composer .new-action { margin-top: 9px; }
-.session-composer .new-action > label { display: block; font-size: 12px; font-weight: 700; }
-.session-composer .new-action input:not([type=checkbox]), .session-composer .new-action select { width: 100%; border: 1px solid #dce2e0; border-radius: 7px; padding: 10px; background: #fff; color: var(--ink); font: 13px Manrope, sans-serif; }
 .rich-text-shell { border: 1px solid #dce2e0; border-radius: 7px; overflow: hidden; }
 .rich-toolbar { display: flex; align-items: center; gap: 2px; padding: 6px; border-bottom: 1px solid #e7ebea; background: #f7f9f8; }
 .rich-toolbar button { border: 0; border-radius: 4px; min-width: 34px; height: 31px; background: transparent; color: #405053; cursor: pointer; font: 16px Manrope, sans-serif; }
@@ -110,14 +116,25 @@
 .draft-status { min-height: 16px; margin: -8px 0 0; color: var(--muted); font: 500 10px 'DM Mono', monospace; }
 .session-person { padding: 11px 13px; border-radius: 7px; background: #eff6f5; color: var(--teal); font: 700 13px Manrope, sans-serif; }
 .session-agenda, .session-actions { padding: 12px 13px; border: 1px solid var(--line); border-radius: 7px; background: #fbfcfc; }
-.session-agenda .eyebrow, .session-actions .eyebrow { margin-bottom: 8px; }
-.session-agenda-item { display: flex; gap: 9px; align-items: center; padding: 7px 0; font-size: 12px; font-weight: 600; }
-.session-agenda-item + .session-agenda-item { border-top: 1px solid var(--line); }
+.session-context-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.session-context-heading .eyebrow { margin: 0; }
+.session-context-heading button { border: 0; background: none; padding: 2px 0; color: var(--teal); font: 700 11px Manrope, sans-serif; cursor: pointer; }
+.session-context-heading button:hover, .session-context-heading button:focus-visible { text-decoration: underline; }
+.session-agenda > .eyebrow, .session-actions > .eyebrow { margin-bottom: 8px; }
+.session-agenda-item { display: flex; min-width: 0; gap: 9px; align-items: flex-start; padding: 7px 0; font-size: 12px; font-weight: 600; cursor: pointer; }
+.session-agenda-copy { min-width: 0; line-height: 1.5; overflow-wrap: anywhere; }
+.session-agenda-item small { display: block; margin-top: 3px; color: #397264; font-size: 10px; font-weight: 600; }
+.session-agenda-entry + .session-agenda-entry { border-top: 1px solid var(--line); }
+.session-agenda-entry--completed { opacity: .78; }
+.session-agenda-entry--completed .session-agenda-copy { color: #58706a; }
+.session-agenda-history-heading { margin: 13px 0 3px; padding-top: 11px; border-top: 1px solid var(--line); color: #5b8177; font: 500 9px 'DM Mono', monospace; letter-spacing: .08em; }
 .session-action-item { display: flex; gap: 9px; align-items: flex-start; padding: 9px 0; cursor: pointer; }
 .session-action-item + .session-action-item { border-top: 1px solid var(--line); }
 .session-action-copy { display: grid; gap: 3px; }
 .session-action-copy strong { font-size: 12px; font-weight: 700; }
 .session-action-copy small { color: var(--muted); font-size: 11px; font-weight: 500; }
+.session-action-item--overdue { margin: 2px -7px; padding: 9px 7px; border-radius: 6px; background: #fff1ee; box-shadow: inset 3px 0 #c85b4d; }
+.session-overdue { color: #a63f32; font: 700 9px 'DM Mono', monospace; letter-spacing: .04em; }
 .session-agenda-empty { margin: 0; color: var(--muted); font-size: 12px; }
 .session-notes { font-size: 13px; line-height: 1.65; }
 .session-notes p { margin: 0 0 9px; }
@@ -127,6 +144,33 @@
 .emoji-panel { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; max-height: 158px; overflow: auto; padding: 7px; border-top: 1px solid #e7ebea; background: #fff; }
 .emoji-panel button { border: 0; border-radius: 5px; padding: 5px 2px; background: transparent; font-size: 22px; cursor: pointer; }
 .emoji-panel button:hover { background: #e4eeec; }
+
+.signpost-picture-picker { grid-template-columns: 1fr auto; align-items: baseline; }
+.signpost-rich-editor { min-height: 125px; max-height: 280px; overflow-y: auto; font-size: 13px; }
+.signpost-rich-text-shell:focus-within { border-color: #8fbab1; box-shadow: 0 0 0 2px #dcece8; }
+.signpost-picture-picker > span { color: var(--muted); font-size: 10px; font-weight: 500; }
+.signpost-picture-picker input { grid-column: 1 / -1; cursor: pointer; }
+.signpost-picture-previews { display: grid; gap: 7px; padding: 9px; border: 1px solid var(--line); border-radius: 8px; background: #f8fbf9; }
+.signpost-picture-previews > p { margin: 0; color: var(--muted); font-size: 11px; }
+.signpost-picture-previews > div { display: grid; grid-template-columns: 38px minmax(0, 1fr) 26px; align-items: center; gap: 9px; }
+.signpost-picture-previews img { width: 38px; height: 38px; border-radius: 5px; object-fit: cover; }
+.signpost-picture-previews span { overflow: hidden; color: #405053; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.signpost-picture-previews button { border: 0; background: none; color: #a34d43; font-size: 20px; cursor: pointer; }
+.signpost-picture-gallery { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.signpost-link { color: var(--teal); font-weight: 700; text-decoration: underline; text-decoration-color: #9fc8bf; text-underline-offset: 2px; overflow-wrap: anywhere; }
+.signpost-link:hover, .signpost-link:focus-visible { color: #134e49; text-decoration-color: currentColor; }
+.signpost-picture { width: 58px; height: 46px; margin: 0; padding: 0; overflow: hidden; border: 1px solid #d4dfda; border-radius: 6px; background: #eef3f1; cursor: zoom-in; }
+.signpost-picture:hover, .signpost-picture:focus-visible { border-color: var(--teal); outline: 2px solid #b9d8d1; outline-offset: 1px; }
+.signpost-picture img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.session-agenda-entry .signpost-picture-gallery { margin: 0 0 8px 26px; }
+.session-agenda-entry .signpost-picture { width: 52px; height: 42px; }
+.signpost-picture-dialog { width: min(900px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 42px 14px 14px; overflow: auto; border: 0; border-radius: 12px; background: #17201f; box-shadow: 0 18px 55px #13231e77; }
+.signpost-picture-dialog::backdrop { background: #13231eaa; }
+.signpost-picture-dialog .icon-button { position: absolute; top: 12px; right: 14px; color: #fff; }
+.signpost-picture-dialog img { display: block; max-width: 100%; max-height: calc(100dvh - 90px); margin: auto; object-fit: contain; }
+
+.action-row--overdue { margin-right: -10px; margin-left: -10px; padding-right: 10px; padding-left: 10px; border-radius: 7px; background: #fff4f1; box-shadow: inset 3px 0 #c85b4d; }
+.due--overdue { color: #a63f32; background: #fde1dc; font-weight: 700; white-space: nowrap; }
 
 .meeting-card {
   width: 100%;
